@@ -1,0 +1,26 @@
+<%= form_with(model: organisation) do |form| %>
+  <% if organisation.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(organisation.errors.count, "error") %> prohibited this organisation from being saved:</h2>
+
+      <ul>
+        <% organisation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.text_field :name, class:"form-control", placeholder:"Organisation" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.text_field :price, class:"form-control", placeholder:"Your Price" %>
+    <p>Premium Subscription purchase with more than $25000</p>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Register', class:'btn btn-primary' %>
+  </div>
+<% end %>

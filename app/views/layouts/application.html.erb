@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <%= render "shared/head" %>
+  <body>
+    <%= render 'shared/logo' %>
+    <%= render 'shared/header' %>
+    <br>
+    <div class="container">
+      <% if notice %>
+        <br>
+        <%= render 'shared/alerts' %>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>

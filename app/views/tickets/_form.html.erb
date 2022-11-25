@@ -1,0 +1,54 @@
+<%= form_with(model: ticket) do |form| %>
+  <% if ticket.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+
+      <ul>
+        <% ticket.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+      <%= form.label :organisation_id, "Title   :    " %>
+    <%= form.text_field :title, class:"form-control", placeholder:"Title" %>
+  </div>
+
+  <div class="field form-group">
+      <%= form.label :organisation_id, "Description   :    " %>
+    <%= form.text_field :description, class:"form-control", placeholder:"Description" %>
+  </div>
+  <% if current_agent.role_id > 3 &&  action == "Edit" %>
+    <div class="field form-group">
+      <%= form.label :organisation_id, "Created By   :    " %>
+      <%= form.text_field :organisation_id, class:"form-control", value: ticket.show_org, disabled: true  %>
+    </div>
+  <% else %>
+    <div class="field form-group">
+      <%= form.label :organisation_id, "Created By   :    " %>
+      <%= form.collection_select :organisation_id, Organisation.all,:id,:name %>
+    </div>
+  <% end %>
+  
+  <% if action == "Edit" %>
+    <div class="field form-group">
+      <%= form.label :status_id, "Ticket Status   :    " %>
+      <%= form.collection_select :status_id, Status.all,:id,:name%>
+    </div>
+  <% end %>
+
+  <% if agent_signed_in? && action == "Edit" && ticket.agent_id != current_agent.id %>
+    <div class="field form-group">
+      <%= form.text_field :agent_id, id: :ticket_agent_id, value:current_agent.id, class:"form-control", type: :hidden %>
+    </div>
+    <div class="actions">
+      <%= form.submit "Assign To Me ",class:'btn btn-primary' %>
+    </div>
+  <% else %>
+    <div class="actions">
+      <%= form.submit class:'btn btn-primary' %>
+    </div>
+  <% end %>
+<% end %>

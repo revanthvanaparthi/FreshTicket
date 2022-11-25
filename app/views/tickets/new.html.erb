@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-header">
+    <h1>Rise New Ticket</h1>
+  </div>
+  <div class="card-body">
+    <%= render "form", ticket: @ticket, action: 'Create' %>
+  </div>
+</div>
+<br>
+<div>
+  <%= link_to 'Back', :back %>
+</div>

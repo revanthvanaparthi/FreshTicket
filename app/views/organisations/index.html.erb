@@ -1,0 +1,18 @@
+<table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @organisations.each do |organisation| %>
+      <tr>
+        <td><%= link_to organisation.name, organisation %></td>
+        <td><%= "$#{organisation.price}" %></td>
+        <td><%= button_to 'Unsubscribe', organisation, method: :delete, class: "btn btn-outline-danger btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,17 @@
+<h1 class="display-4">
+  <%= @organisation.name %>
+</h1>
+<p class="lead">
+  Purchased Price : <%= "$#{@organisation.price}" %>
+  <% @Orgtickets = @organisation.show_tickets %>
+  <% if @Orgtickets.size > 0 %>
+        <br>
+        Tickets Raised : 
+        <br>
+        <% @Orgtickets.each do |ticket|%>
+          Tittle: <%= link_to ticket.title , ticket %> --------- 
+          Status: <%= ticket.show_status %>
+          <br>
+        <% end %>
+  <% end %>
+</p>

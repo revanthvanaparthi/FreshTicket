@@ -1,0 +1,9 @@
+<div class="jumbotron">
+  <%= render @ticket %>
+  <br/>
+  <div class="btn-toolbar">
+  <%= link_to 'Edit', edit_ticket_path(@ticket), class:"btn btn-primary btn-group mr-2" %>
+  <%= button_to 'Delete', @ticket, method: :delete, class: "btn btn-danger btn-group mr-2" %>
+  <%= link_to 'Back', :back, class:"btn btn-dark btn-group mr-2" %>
+  </div>
+</div>

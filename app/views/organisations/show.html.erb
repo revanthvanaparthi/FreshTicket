@@ -1,0 +1,9 @@
+<div class="jumbotron">
+  <%= render @organisation %>
+  <br/>
+  <div class="btn-toolbar">
+  <%= link_to 'Edit', edit_organisation_path(@organisation), class:"btn btn-primary btn-group mr-2" %>
+  <%= button_to 'Unsubscribe', @organisation, method: :delete, class: "btn btn-danger btn-group mr-2" %>
+  <%= link_to 'All Orgs', organisations_path, class:"btn btn-dark btn-group mr-2" %>
+  </div>
+</div>

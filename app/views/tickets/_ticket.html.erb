@@ -1,0 +1,9 @@
+<h1 class="display-4">
+  <%= @ticket.title %>
+</h1>
+<p class="lead">
+  <%= @ticket.description %> <br>
+  Created By: <%= @ticket.show_org %> <br>
+  Assigned To: <%= @ticket.show_agent %> <br>
+  Ticket Status: <%= @ticket.show_status %>
+</p>

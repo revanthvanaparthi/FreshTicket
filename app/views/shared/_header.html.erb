@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <div class="btn-group">
+    <%= link_to 'All Tickets',root_path, class: "navbar-brand" %>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+            <%= link_to 'Opened Tickets',tickets_status_path('Open'), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Closed Tickets',tickets_status_path('Closed'), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Unassigned Tickets',unassign_tickets_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'All Orgs',organisations_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Premium Orgs',premium_orgs_path, class: "nav-link" %>
+        </li>
+        <% if !agent_signed_in? %>
+            <li class="nav-item">
+                <%= link_to 'Sign In',new_agent_session_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+                <%= link_to 'Sign Up',new_agent_registration_path, class: "nav-link" %>
+            </li>
+        <% else %>
+            <li class="nav-item">
+                <%= link_to 'My Tickets',tickets_agent_path(current_agent.id), class: "nav-link" %>
+            </li>
+            <% if current_agent.role_id < 5 %>
+              <li class="nav-item">
+                <%= link_to 'New Ticket',new_ticket_path, class: "nav-link" %>
+              </li>
+            <% end %>
+            <% if current_agent.role_id < 3  %>
+              <li class="nav-item">
+                <%= link_to 'Regester Organisation',new_organisation_path, class: "nav-link" %>
+              </li>
+            <% end %>
+            <li class="nav-item">
+                <%= link_to 'Profile',edit_agent_registration_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+                <%= button_to 'Sign Out',destroy_agent_session_path, method: :delete, class: "btn btn-link" %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
